@@ -10,6 +10,8 @@ jobs:
       - name: Add reaction
         uses: peter-evans/create-or-update-comment@v3
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
           issue-number: ${{ github.event.issue.number }}
           body: |
             This is a multi-line test comment
