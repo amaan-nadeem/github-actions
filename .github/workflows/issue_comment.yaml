@@ -1,10 +1,10 @@
 name: Create a comment on new issue
 
 on:
-  issue_comment:
+  issues:
     types: [opened]
 jobs:
-  commentCreated:
+  comment-with-action:
     runs-on: ubuntu-latest
     steps:
       - name: Add reaction
