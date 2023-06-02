@@ -1,16 +1,19 @@
-name: Create a comment on new issue
+name: Comment on Opened Issues
 
 on:
   issues:
-    types: [opened]
+    types:
+      - opened
+
 jobs:
-  comment-with-action:
+  comment:
     runs-on: ubuntu-latest
     steps:
-      - name: Add reaction
-        uses: peter-evans/create-or-update-comment@v3
+      - uses: actions/checkout@v2
+      - name: Create or Update Comment
+        uses: peter-evans/create-or-update-comment@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
           issue-number: ${{ github.event.issue.number }}
-          body: This is a multi-line test comment
+          body: "Thank you for opening this issue! I will look into it as soon as possible."
