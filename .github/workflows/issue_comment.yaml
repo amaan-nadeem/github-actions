@@ -1,22 +1,14 @@
 name: Create a comment on new issue
 
 on:
-  issues:
-    types: [opened]
-    permissions:
-      contents: write
+  issue_comment:
+    types: [created]
 jobs:
-  comment-with-action:
+  commentCreated:
     runs-on: ubuntu-latest
     steps:
-      - name: "dump github context"
-        run: echo '${{ toJSON(github.event)}}' | jq
-        shell: bash
-      - name: Create comment
+      - name: Add reaction
         uses: peter-evans/create-or-update-comment@v3
         with:
-          issue-number: ${{ github.event.issue.number }}
-          body: |
-            This is a multi-line test comment
-            - With GitHub **Markdown** :sparkles:
-            - Created by [create-or-update-comment][1]
+          comment-id: ${{ github.event.comment.id }}
+          reactions: eyes
