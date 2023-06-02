@@ -10,5 +10,8 @@ jobs:
       - name: Add reaction
         uses: peter-evans/create-or-update-comment@v3
         with:
-          comment-id: ${{ github.event.comment.id }}
-          reactions: eyes
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
+            - Created by [create-or-update-comment][1]
